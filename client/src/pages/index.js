@@ -8,3 +8,4 @@ export {default as Register} from "./Register";
 export {default as Services} from "./Services";
 export {default as SingleService} from "./SingleService";
 export {default as HomeLayout} from "./HomeLayout";
+export {default as Home} from "./Home"
