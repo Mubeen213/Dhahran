@@ -11,7 +11,6 @@ const servicesSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, 'Please provide price'],
-        default: 0
     },
     description: {
         type: String,
@@ -25,3 +24,5 @@ const servicesSchema = new mongoose.Schema({
 })
 
 const Service = mongoose.model('Service', servicesSchema);
+
+export default Service

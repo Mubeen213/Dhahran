@@ -1,7 +1,8 @@
 import {StatusCodes} from "http-status-codes";
 
-export const ErrorHandler = (err, req, res, next) => {
+export const ErrorHandlerMiddleware = (err, req, res, next) => {
 
+    console.log("Inside error handler middleware: " + err)
     let customError = {
         message: err.message || 'Something went wrong',
         statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
