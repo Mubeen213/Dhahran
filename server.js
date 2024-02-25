@@ -11,13 +11,18 @@ app.use(morgan('dev'))
 
 //  Routes
 import serviceRouter from "./routes/ServiceRoutes.js";
+// import authRoutes from "./routes/AuthRoutes.js";
+
+app.use('/api/v1/services', serviceRouter)
+app.use('/api/v1/auth', authRoutes)
+
+
 
 // Error handler middleware
 import {ErrorHandlerMiddleware} from "./middlewares/ErrorHandlerMiddleware.js";
+import authRoutes from "./routes/AuthRoutes.js";
 
 const port = process.env.PORT || 2001
-
-app.use('/api/v1/services', serviceRouter)
 
 app.use(ErrorHandlerMiddleware)
 

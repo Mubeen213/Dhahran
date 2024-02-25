@@ -13,16 +13,16 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, 'Please provide email'],
         validate: {
-            validator: validator.isEmail(),
+            validator: validator.isEmail,
             message: 'Please provide valid email'
         }
     },
     password: {
         type: String,
         required: true,
-        minLength: 4
+        minLength: [4, 'Password should be more than 4 letter']
     },
-    address: {
+    location: {
         type: String,
         maxLength: [200, 'Address cannot be more than 200 words']
     },
@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
         enum: ['admin', 'user'],
         default: 'user'
     }
+}, {
+    timestamps: true
 })
 
 const User = mongoose.model('User', userSchema);

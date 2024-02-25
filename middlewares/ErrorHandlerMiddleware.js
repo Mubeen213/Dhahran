@@ -2,14 +2,17 @@ import {StatusCodes} from "http-status-codes";
 
 export const ErrorHandlerMiddleware = (err, req, res, next) => {
 
-    console.log("Inside error handler middleware: " + err)
+    console.log(err)
+
     let customError = {
-        message: err.message || 'Something went wrong',
+        msg: err.message || 'Something went wrong',
         statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
     }
 
     if (err.name === 'ValidationError') {
-        customError.msg = Object.values(err.errors)
+        console.log(err.errors)
+        customError.msg =
+            Object.values(err.errors)
             .map((item) => item.message)
             .join(',');
         customError.statusCode = 400;
@@ -26,7 +29,7 @@ export const ErrorHandlerMiddleware = (err, req, res, next) => {
     }
 
     return res.status(customError.statusCode).json({
-        msg: customError.message
+        msg: customError.msg
     })
 }
 
