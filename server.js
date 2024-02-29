@@ -1,26 +1,28 @@
 import dotenv from 'dotenv'
+
 dotenv.config()
 import express from 'express'
 import 'express-async-errors'
 import morgan from 'morgan'
 import mongoose from "mongoose";
+import cookieParser from 'cookie-parser'
+
 const app = express()
 app.use(express.json())
 app.use(morgan('dev'))
-
+app.use(cookieParser(process.env.JWT_SECRET))
 
 //  Routes
 import serviceRouter from "./routes/ServiceRoutes.js";
-// import authRoutes from "./routes/AuthRoutes.js";
+import authRoutes from "./routes/AuthRoutes.js";
 
 app.use('/api/v1/services', serviceRouter)
 app.use('/api/v1/auth', authRoutes)
 
 
-
 // Error handler middleware
 import {ErrorHandlerMiddleware} from "./middlewares/ErrorHandlerMiddleware.js";
-import authRoutes from "./routes/AuthRoutes.js";
+
 
 const port = process.env.PORT || 2001
 
@@ -31,7 +33,7 @@ const start = async () => {
         await mongoose.connect(process.env.MONGO_URI);
         console.log('Connected to db')
         app.listen(port, () => {
-            console.log("server is up and running on port "+ port)
+            console.log("server is up and running on port " + port)
         })
     } catch (error) {
         console.log(error)

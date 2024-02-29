@@ -1,30 +1,49 @@
 import User from "../models/User.js";
 import {StatusCodes} from "http-status-codes";
-import bcrypt from 'bcryptjs'
-import {comparePassword, hasPassword} from "../utils/PasswordUtils.js";
+import {comparePassword, hashPassword} from "../utils/PasswordUtils.js";
 import {Unauthenticated} from "../errors/Unauthenticated.js";
-import {Unauthorized} from "../errors/Unauthorized.js";
+import {BadRequest} from "../errors/BadRequest.js";
+import {createTokenUser, setAuthCookiesToResponse} from "../utils/TokenUtils.js";
 
 export const login = async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email})
-    if(!user) {
+    if (!user) {
         throw new Unauthenticated('User with this email does not exist')
     }
     const isPasswordCorrect = await comparePassword(password, user.password);
-    if(!isPasswordCorrect) {
+    if (!isPasswordCorrect) {
         throw new Unauthenticated('Email or password is incorrect')
     }
-    res.send("Login route")
+    const tokenUser = createTokenUser(user)
+    setAuthCookiesToResponse({res, user: tokenUser})
+
+    return res.status(StatusCodes.OK)
+        .json({
+            'User': tokenUser
+        })
 }
 
 export const register = async (req, res) => {
 
-    const salt = await bcrypt.genSalt(10)
-    req.body.password = await hasPassword(req.body.password)
-    const user = await User.create(req.body)
+    const {name, email, password} = req.body;
+
+    const emailAlreadyExists = await User.findOne({email})
+    if (emailAlreadyExists) {
+        throw new BadRequest('Email already exists')
+    }
+
+    const isFirstAccount = await User.countDocuments(({})) === 0;
+    const role = isFirstAccount ? 'admin' : 'user';
+
+    const hashedPassword = await hashPassword(password)
+    console.log("Hashed password  " + hashedPassword)
+    const user = await User.create({name, email, password: hashedPassword, role})
+    const tokenUser = createTokenUser(user)
+    setAuthCookiesToResponse({res, user: tokenUser})
+
     return res.status(StatusCodes.CREATED)
         .json({
-            'User': user
+            'User': tokenUser
         })
 }
