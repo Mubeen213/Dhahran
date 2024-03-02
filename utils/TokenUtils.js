@@ -12,21 +12,19 @@ const createJwt = ({payload}) => {
 }
 
 export const isTokenValid = ({token}) => {
-    return jwt.verify(token, process.env.JWT_SECRET)
+    return jwt.verify(token, process.env.JWT_SECRET);
 }
 
 export const setAuthCookiesToResponse = ({res, user}) => {
 
     const token = createJwt({payload: user})
 
-    console.log("Creating cookies")
+    console.log("New JWT token  " + token)
     const oneDay = 1000 * 60 * 60 * 24;
-    res.cookie(
-        'token', token, {
-            httpOnly: true,
-            expires: new Date(Date.now() + oneDay),
-            secure: false,
-            signed: true,
-        }
-    )
+    res.cookie('token', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + oneDay),
+        secure: process.env.NODE_ENV === 'production',
+        signed: true,
+    });
 }

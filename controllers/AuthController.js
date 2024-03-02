@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import {StatusCodes} from "http-status-codes";
-import {comparePassword, hashPassword} from "../utils/PasswordUtils.js";
+import {validatePassword, hashPassword} from "../utils/PasswordUtils.js";
 import {Unauthenticated} from "../errors/Unauthenticated.js";
 import {BadRequest} from "../errors/BadRequest.js";
 import {createTokenUser, setAuthCookiesToResponse} from "../utils/TokenUtils.js";
@@ -11,7 +11,7 @@ export const login = async (req, res) => {
     if (!user) {
         throw new Unauthenticated('User with this email does not exist')
     }
-    const isPasswordCorrect = await comparePassword(password, user.password);
+    const isPasswordCorrect = await validatePassword(password, user.password);
     if (!isPasswordCorrect) {
         throw new Unauthenticated('Email or password is incorrect')
     }
@@ -45,5 +45,18 @@ export const register = async (req, res) => {
     return res.status(StatusCodes.CREATED)
         .json({
             'User': tokenUser
+        })
+}
+
+export const logout = async (req, res) => {
+
+    res.cookie('token', 'logout', {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000)
+    })
+
+    res.status(StatusCodes.OK)
+        .json({
+            msg: 'User logged out'
         })
 }
