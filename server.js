@@ -23,6 +23,12 @@ app.use('/api/v1/services', serviceRouter)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users',userRouter)
 
+app.get('/api/v1/test', (req, res) => {
+    console.log("Test API route")
+    res.json({
+        msg: 'test route'
+    })
+})
 
 const port = process.env.PORT || 2001
 
