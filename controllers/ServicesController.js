@@ -28,7 +28,7 @@ export const getAllServices = async (req, res) => {
     const services = await Service.find({})
     return res.status(StatusCodes.OK)
         .json({
-            'Services': services
+            'services': services
         })
 }
 

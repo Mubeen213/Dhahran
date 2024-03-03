@@ -2,6 +2,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import {About, Cart, Checkout, Landing, Error, HomeLayout, Login, Orders, Register, Services, SingleService} from './pages'
 import {loader} from "./pages/FeaturedServices.jsx";
+import {serviceLoader} from "./pages/Services.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <Services/>
+                element: <Services/>,
+                loader: serviceLoader
             },
             {
                 path: '/singleService',
