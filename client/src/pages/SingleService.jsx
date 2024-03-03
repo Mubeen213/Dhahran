@@ -1,12 +1,8 @@
 
 
-const SingleService = () => {
+import image from "../assets/hero.jpeg";
+const SingleService = ({name, description, price, featured}) => {
 
-    return(
-        <h1>
-            Single service page
-        </h1>
-    )
 }
 
 export default SingleService;

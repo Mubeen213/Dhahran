@@ -34,9 +34,9 @@ export const getAllServices = async (req, res) => {
 
 export const getFeaturedServices = async (req, res) => {
     const featuredServices = await Service.find({featured: true})
-    console.log("featured")
+    console.log("getFeaturedServices")
     return res.status(StatusCodes.OK)
         .json({
-            'Featured': featuredServices
+            'featured': featuredServices
         })
 }

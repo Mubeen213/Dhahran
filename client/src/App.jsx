@@ -1,6 +1,7 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
-import {About, Cart, Checkout, Error, HomeLayout, Login, Orders, Register, Services, SingleService, Home} from './pages'
+import {About, Cart, Checkout, Landing, Error, HomeLayout, Login, Orders, Register, Services, SingleService} from './pages'
+import {loader} from "./pages/FeaturedServices.jsx";
 
 const router = createBrowserRouter([
     {
@@ -10,7 +11,8 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home/>
+                element: <Landing/>,
+                loader: loader
             },
             {
                 path: '/about',

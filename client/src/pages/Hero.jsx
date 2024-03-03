@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
+import image from "../assets/hero.jpeg";
 
-
-import image from  '../assets/hero.jpeg'
-const Home = () => {
+export const Hero = () => {
 
     return (
-        <div className= 'grid grid-cols-1 lg:grid-cols-2 gap-2 items-center'>
+        <section>
+            <div className= 'grid grid-cols-1 lg:grid-cols-2 gap-2 items-center'>
                 <div>
                     <h1 className= 'max-w-2xl text-4xl font-bold sm:text-6xl tracking-tight'>
                         Redefining the Way You Care for Your Wardrobe
@@ -19,11 +19,10 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-            <div className= 'hidden lg:carousel h-[28rem] flex justify-center'>
-                <img src={image} alt= 'Hero' className= 'rounded-box h-full object-cover'/>
+                <div className= 'hidden lg:carousel h-[28rem] flex justify-center'>
+                    <img src={image} alt= 'Hero' className= 'rounded-box h-full object-cover'/>
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
-
-export default Home

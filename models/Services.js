@@ -21,6 +21,8 @@ const servicesSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 })
 
 const Service = mongoose.model('Service', servicesSchema);
