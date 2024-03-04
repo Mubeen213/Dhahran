@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {About, Cart, Checkout, Landing, Error, HomeLayout, Login, Orders, Register, Services, SingleService} from './pages'
 import {loader} from "./pages/FeaturedServices.jsx";
 import {serviceLoader} from "./pages/Services.jsx";
+import {singleServiceLoader} from "./pages/SingleService.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,8 +26,9 @@ const router = createBrowserRouter([
                 loader: serviceLoader
             },
             {
-                path: '/singleService',
-                element: <SingleService/>
+                path: '/services/:id',
+                element: <SingleService/>,
+                loader: singleServiceLoader
             },
             {
                 path: '/orders',

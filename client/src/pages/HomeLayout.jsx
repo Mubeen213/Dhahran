@@ -12,7 +12,7 @@ const HomeLayout = () => {
             <Navbar/>
             {
                 isLoading ? (<Loading/>) : (
-                    <section className='align-element py-20'>
+                    <section className='align-element py-10'>
                         <Outlet/>
                     </section>
                 )

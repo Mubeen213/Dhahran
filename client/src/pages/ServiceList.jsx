@@ -19,7 +19,7 @@ export const ServiceList = ({services}) => {
         <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {
                 services.map((service, index) => {
-                    const {name, description, price, featured} = service
+                    const {name, description, price, featured, _id} = service
                     const image = featuredImages[index];
                     return (
                         <div className="flex flex-col max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -33,7 +33,7 @@ export const ServiceList = ({services}) => {
                                         {description.substring(0, 60)} ...
                                     </p>
                                 </div>
-                                <Link to='/'
+                                <Link to={`/services/${_id}`}
                                       className="btn btn-secondary
                                    inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg
                                     hover:bg-blue-800 focus:ring-4 focus:outline-none

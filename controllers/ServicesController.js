@@ -9,7 +9,7 @@ export const createService = async (req, res) => {
     const service = await Service.create({name, price, description, featured})
     return res.status(StatusCodes.CREATED)
         .json({
-            'Service': service
+            'service': service
         })
 }
 
@@ -19,7 +19,7 @@ export const getService = async (req, res) => {
     const service = await Service.findOne(id)
     return res.status(StatusCodes.OK)
         .json({
-            'Service': service
+            'service': service
         })
 }
 
