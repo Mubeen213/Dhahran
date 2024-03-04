@@ -16,8 +16,7 @@ const featuredImages = [
 
 export const ServiceList = ({services}) => {
     return (
-        <section className='mt-14 rounded-md px-8 py-4 grid gap-x-6 gap-y-8
-          sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <section className='mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {
                 services.map((service, index) => {
                     const {name, description, price, featured, _id} = service
