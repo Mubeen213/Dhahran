@@ -10,8 +10,8 @@ export const Search = () => {
             <input
                 type='search'
                 name='search'
-                value=''
                 className= {`input input-bordered input-sm`}
+                onChange={(e) => e.target.value}
             />
             <button type='submit' className='btn btn-primary btn-sm '>
                 search

@@ -25,7 +25,16 @@ export const getService = async (req, res) => {
 
 export const getAllServices = async (req, res) => {
 
-    const services = await Service.find({})
+    const {search} = req.query
+    const queryObject = {};
+    if (search) {
+        queryObject.name = {
+            $regex: search,
+            $options: 'i'
+        };
+    }
+
+    const services = await Service.find(queryObject)
     return res.status(StatusCodes.OK)
         .json({
             'services': services

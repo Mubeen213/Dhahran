@@ -4,7 +4,15 @@ import {ServiceList} from "./ServiceList.jsx";
 import {Search} from "../components/Search.jsx";
 
 export const serviceLoader = async ({request}) => {
-    const {data} = await customFetch('/api/v1/services')
+
+    const params = Object.fromEntries([
+        ...new URL(request.url).searchParams.entries(),
+    ]);
+
+    console.log(params)
+    const {data} = await customFetch('/api/v1/services', {
+        params
+    })
     const {services} = data
     return {services}
 }
