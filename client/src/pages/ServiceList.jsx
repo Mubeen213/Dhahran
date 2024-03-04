@@ -16,13 +16,16 @@ const featuredImages = [
 
 export const ServiceList = ({services}) => {
     return (
-        <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <section className='mt-14 rounded-md px-8 py-4 grid gap-x-6 gap-y-8
+          sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {
                 services.map((service, index) => {
                     const {name, description, price, featured, _id} = service
                     const image = featuredImages[index];
                     return (
-                        <div className="flex flex-col max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div key={_id}
+                            className="flex flex-col justify-center max-w-sm bg-white border
+                             border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <img className="rounded-t-lg" src={image} alt="" />
                             <div className="p-5 flex flex-col justify-between h-full">
                                 <div>
@@ -34,15 +37,15 @@ export const ServiceList = ({services}) => {
                                     </p>
                                 </div>
                                 <Link to={`/services/${_id}`}
-                                      className="btn btn-secondary
+                                      className="btn btn-secondary transition
                                    inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg
                                     hover:bg-blue-800 focus:ring-4 focus:outline-none
                                     focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Read more
                                     <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
                                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                        <path stroke="currentColor"
+                                               d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                     </svg>
                                 </Link>
                             </div>

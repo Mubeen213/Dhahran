@@ -1,5 +1,5 @@
 
-export const FormInput = ({label, name, type, defaultValue}) => {
+export const FormInput = ({label, name, type, defaultValue, size}) => {
 
     return (
         <div className= 'form-control'>
@@ -12,7 +12,7 @@ export const FormInput = ({label, name, type, defaultValue}) => {
             type={type}
             name={name}
             value={defaultValue}
-            className= 'input input-bordered'
+            className= {`input input-bordered ${size}`}
             />
         </div>
     )
