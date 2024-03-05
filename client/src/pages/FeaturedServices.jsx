@@ -1,4 +1,4 @@
-import {customFetch} from "../utils/index.js";
+import {customFetch} from "../utils/index.jsx";
 import {useLoaderData} from "react-router-dom";
 import axios from "axios";
 import SingleService from "./SingleService.jsx";

@@ -1,5 +1,5 @@
 import {useLoaderData} from "react-router-dom";
-import {customFetch} from "../utils/index.js";
+import {customFetch} from "../utils/index.jsx";
 import {ServiceList} from "./ServiceList.jsx";
 import {Search} from "../components/Search.jsx";
 

@@ -14,9 +14,9 @@ export const createService = async (req, res) => {
 }
 
 export const getService = async (req, res) => {
-    const {id} = req.param
-    console.log("Get service")
-    const service = await Service.findOne(id)
+    const {id} = req.params
+    console.log("Get service with id  " + id)
+    const service = await Service.findOne({_id: id})
     return res.status(StatusCodes.OK)
         .json({
             'service': service
