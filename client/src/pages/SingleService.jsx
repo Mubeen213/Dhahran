@@ -1,10 +1,12 @@
 import service1 from '../assets/service1.jpeg'
-import {customFetch} from "../utils/index.js";
+import {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {Link, useLoaderData} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addItem} from "../features/cart/cartSlice.js";
+import {useState} from "react";
 
 
 export const singleServiceLoader = async ({params}) => {
-    console.log("Params " + params.id + " " + params)
     const {data} = await customFetch(`/api/v1/services/${params.id}`)
     return {service: data.service}
 }
@@ -12,7 +14,25 @@ export const singleServiceLoader = async ({params}) => {
 const SingleService = () => {
 
     const {service} = useLoaderData()
-    const {name, description, price} = service
+    const {name, description, price, _id} = service
+    const [amount, setAmount] = useState(1);
+
+    const handleAmount = (e) => {
+        setAmount(parseInt(e.target.value));
+    };
+
+    const dispatch = useDispatch();
+
+    const cartService = {
+        cartID: _id,
+        name,
+        price,
+        amount
+    }
+
+    const addToCart = () => {
+        dispatch(addItem({service: cartService}))
+    }
 
     return (
         <section>
@@ -39,10 +59,24 @@ const SingleService = () => {
                     <h1 className='text-3xl md:text-4xl lg:text-5xl tracking-tight font-medium'>{name}</h1>
                     <p className='mt-6 text-xl'>{description}</p>
                     <p className= 'mt-3 text-xl'>
-                        ${price}</p>
-
+                        {formatPrice(price)}</p>
+                    <div className='form-control w-full max-w-xs'>
+                        <label className='label' htmlFor='amount'>
+                            <h4 className='text-md font-medium -tracking-wider capitalize'>
+                                amount
+                            </h4>
+                        </label>
+                        <select
+                            className='select select-secondary select-bordered select-md'
+                            id='amount'
+                            value={amount}
+                            onChange={handleAmount}
+                        >
+                            {generateAmountOptions(20)}
+                        </select>
+                    </div>
                     <div className= 'mt-5'>
-                        <button  onClick={() => console.log("Adding to cart")}
+                        <button  onClick={addToCart}
                             className= 'btn btn-secondary btn-md'>
                             Add to cart
                         </button>
