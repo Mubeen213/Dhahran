@@ -1,5 +1,4 @@
 import {Form, Link} from "react-router-dom";
-import {FormInput} from "./FormInput.jsx";
 
 
 export const Search = () => {

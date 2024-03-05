@@ -3,17 +3,18 @@ import {useLoaderData} from "react-router-dom";
 import axios from "axios";
 import SingleService from "./SingleService.jsx";
 import {ServiceList} from "./ServiceList.jsx";
+import {toast} from "react-toastify";
 
 
 export const loader = async () => {
 
     try {
-        console.log("Calling the featured services")
         const {data} = await customFetch('/api/v1/services/featured');
         const {featured} = data
         return {featured};
     } catch (err) {
-        console.log("Error occurred while fetching feature services", err)
+        toast.error(err.response.data.msg)
+        return null;
     }
 }
 
@@ -23,7 +24,7 @@ export const FeaturedServices = () => {
 
     return (
         <section className='mt-12'>
-            <h1 className= 'text-4xl sm:text-5xl md:text-6xl capitalize mb-4 font-bold tracking-tight'>
+            <h1 className='text-4xl sm:text-5xl md:text-6xl capitalize mb-4 font-bold tracking-tight'>
                 Featured services
             </h1>
             <ServiceList services={featured}/>

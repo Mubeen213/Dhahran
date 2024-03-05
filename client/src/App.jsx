@@ -4,6 +4,8 @@ import {About, Cart, Checkout, Landing, Error, HomeLayout, Login, Orders, Regist
 import {loader} from "./pages/FeaturedServices.jsx";
 import {serviceLoader} from "./pages/Services.jsx";
 import {singleServiceLoader} from "./pages/SingleService.jsx";
+import {registerAction} from "./pages/Register.jsx";
+import {loginAction} from "./pages/Login.jsx";
 
 const router = createBrowserRouter([
     {
@@ -46,11 +48,13 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <Login/>
+        element: <Login/>,
+        action: loginAction
     },
     {
         path: '/register',
-        element: <Register/>
+        element: <Register/>,
+        action: registerAction
     }
 ])
 

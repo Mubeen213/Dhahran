@@ -6,8 +6,6 @@ import {useSelector} from "react-redux";
 
 export const Navbar = () => {
     const numItemsInCart =  useSelector((state) => state.cartState.numItemsInCart);
-    console.log(numItemsInCart)
-
     return (
         <nav className='bg-base-200'>
             <div className='navbar align-element '>
@@ -36,8 +34,6 @@ export const Navbar = () => {
                     <ul className='menu menu-horizontal '><NavLinks/></ul>
                 </div>
                 <div className='navbar-end'>
-                    {/* THEME ICONS */}
-                    {/* CART LINK*/}
                     <NavLink to='cart' className='btn btn-ghost btn-circle btn-md ml-4'>
                         <div className='indicator'>
                             <BsCart3 className='h-6 w-6'/>
