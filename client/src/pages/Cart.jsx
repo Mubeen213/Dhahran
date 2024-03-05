@@ -17,11 +17,11 @@ const Cart = () => {
     return (
         <>
            <SectionTitle text='Shopping cart'/>
-            <div className='mt-8'>
-                <div>
+            <div className='mt-8 grid gap-8 lg:grid-cols-12'>
+                <div className= 'lg:col-span-8'>
                     <CartItemList/>
                 </div>
-                <div>
+                <div className= 'lg:col-span-4 lg:pl-4'>
                     <CartTotals/>
                 </div>
             </div>
