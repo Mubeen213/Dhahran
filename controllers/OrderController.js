@@ -3,6 +3,7 @@ import Service from "../models/Services.js";
 import {NotFound} from "../errors/NotFound.js";
 import {Order} from "../models/Order.js";
 import {StatusCodes} from "http-status-codes";
+import {Unauthorized} from "../errors/Unauthorized.js";
 
 
 export const createOrder = async (req, res) => {
@@ -52,23 +53,30 @@ export const createOrder = async (req, res) => {
 }
 
 export const getCurrentUserOrder = async (req, res) => {
-    const orders = Order.find({user: req.user.userId})
-    res.status(StatusCodes.OK)
-        .json('orders', orders)
+    const orders = await Order.find({user: req.user.userId})
+    return res.status(StatusCodes.OK)
+        .json({
+            'orders': orders
+        })
 }
 
 export const getSingleOrder = async (req, res) => {
 
     const {id: orderId} = req.params
 
-    const order = Order.findOne({_id: orderId})
+    const order = await Order.findOne({_id: orderId})
+    if (req.user.userId !== order.user) {
+        throw new Unauthorized('User is not allowed to access')
+    }
 
     if (!order) {
         throw new BadRequest(`Order with ${orderId} does not exist`);
     }
 
-    res.status(StatusCodes.OK)
-        .json('order', order)
+    return res.status(StatusCodes.OK)
+        .json({
+            'order': order
+        })
 }
 
 export const getAllOrders = async (req, res) => {
@@ -76,7 +84,9 @@ export const getAllOrders = async (req, res) => {
     const orders = await Order.find({})
 
     res.status(StatusCodes.OK)
-        .json('orders', orders)
+        .json({
+            'orders': orders
+        })
 
 }
 
@@ -98,5 +108,7 @@ export const updateOrderStatus = async (req, res) => {
     }
 
     res.status(StatusCodes.OK)
-        .json('order', updatedOrder)
+        .json({
+            'order': updatedOrder
+        })
 }

@@ -23,6 +23,6 @@ orderRoutes.route('/updateOrderStatus')
     .post(authenticateUser, updateOrderStatus)
 
 orderRoutes.route('/:id')
-    .get(getSingleOrder)
+    .get(authenticateUser, getSingleOrder)
 
 export default orderRoutes;
