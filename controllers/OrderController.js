@@ -51,10 +51,52 @@ export const createOrder = async (req, res) => {
         })
 }
 
-export const currentUserOrder = async (req, res) => {
+export const getCurrentUserOrder = async (req, res) => {
+    const orders = Order.find({user: req.user.userId})
+    res.status(StatusCodes.OK)
+        .json('orders', orders)
+}
 
-    const userId = req.userId
+export const getSingleOrder = async (req, res) => {
 
+    const {id: orderId} = req.params
 
+    const order = Order.findOne({_id: orderId})
 
+    if (!order) {
+        throw new BadRequest(`Order with ${orderId} does not exist`);
+    }
+
+    res.status(StatusCodes.OK)
+        .json('order', order)
+}
+
+export const getAllOrders = async (req, res) => {
+
+    const orders = await Order.find({})
+
+    res.status(StatusCodes.OK)
+        .json('orders', orders)
+
+}
+
+export const updateOrderStatus = async (req, res) => {
+
+    const {orderId, orderStatus} = req.body
+    const validStatusValues = ['pending', 'picked-up', 'in-service', 'cancelled', 'delivered'];
+
+    if (!validStatusValues.includes(orderStatus)) {
+        throw new BadRequest('Not a valid status')
+    }
+
+    const updatedOrder = await Order.findOneAndUpdate({_id: orderId, status: orderStatus}, {
+        new: true
+    })
+
+    if (!updatedOrder) {
+        throw new BadRequest(`Order with id ${orderId} does not exist`)
+    }
+
+    res.status(StatusCodes.OK)
+        .json('order', updatedOrder)
 }
