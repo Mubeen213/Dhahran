@@ -28,7 +28,7 @@ const orderSchema = new mongoose.Schema({
     },
     shippingFee: {
         type: Number,
-        required: require
+        required: true
     },
     subTotal: {
         type: Number,
@@ -49,16 +49,18 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    clientSecret: {
+    address: {
         type: String,
         required: true
     },
+    clientSecret: {
+        type: String,
+    },
     paymentIntentId: {
         type: String,
-        required: true
     }
 }, {
     timestamps: true
 })
 
-const Order = mongoose.model('Order', orderSchema);
+export const Order = mongoose.model('Order', orderSchema);

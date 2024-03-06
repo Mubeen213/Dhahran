@@ -1,11 +1,26 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
-import {About, Cart, Checkout, Landing, Error, HomeLayout, Login, Orders, Register, Services, SingleService} from './pages'
+import {
+    About,
+    Cart,
+    Checkout,
+    Landing,
+    Error,
+    HomeLayout,
+    Login,
+    Orders,
+    Register,
+    Services,
+    SingleService
+} from './pages'
 import {loader} from "./pages/FeaturedServices.jsx";
 import {serviceLoader} from "./pages/Services.jsx";
 import {singleServiceLoader} from "./pages/SingleService.jsx";
 import {registerAction} from "./pages/Register.jsx";
 import {loginAction} from "./pages/Login.jsx";
+import {checkoutLoader} from "./pages/Checkout.jsx";
+import {checkoutAction} from "./components/CheckoutForm.jsx";
+import {store} from "./store.js";
 
 const router = createBrowserRouter([
     {
@@ -42,7 +57,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/checkout',
-                element: <Checkout/>
+                element: <Checkout/>,
+                loader: checkoutLoader,
+                action: checkoutAction(store)
             }
         ]
     },

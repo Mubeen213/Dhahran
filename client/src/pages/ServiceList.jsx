@@ -1,7 +1,3 @@
-import {SingleService} from "./index.js";
-import image from "../assets/hero.jpeg";
-import {retry} from "@reduxjs/toolkit/query";
-
 import service1 from '../assets/service1.jpeg'
 import service2 from '../assets/service2.jpeg'
 import service3 from '../assets/service3.jpeg'
@@ -9,6 +5,7 @@ import service4 from '../assets/service4.jpeg'
 import service5 from '../assets/service6.jpeg'
 import service6 from '../assets/service6.jpeg'
 import {Link} from "react-router-dom";
+import imagesMap from "../utils/index.jsx";
 
 const featuredImages = [
     service1, service6, service2, service3, service4, service5
@@ -20,7 +17,7 @@ export const ServiceList = ({services}) => {
             {
                 services.map((service, index) => {
                     const {name, description, price, featured, _id} = service
-                    const image = featuredImages[index];
+                    const image = imagesMap.get(_id)
                     return (
                         <div key={_id}
                             className="flex flex-col justify-center max-w-sm bg-white border

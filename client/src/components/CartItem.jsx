@@ -1,5 +1,5 @@
 import service1 from '../assets/service1.jpeg'
-import {formatPrice, generateAmountOptions} from "../utils/index.jsx";
+import imagesMap, {formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {useDispatch} from "react-redux";
 import {editItem, removeItem} from "../features/cart/cartSlice.js";
 
@@ -26,7 +26,7 @@ export const CartItem = ({cartItem}) => {
                    border-b border-base-300 pb-6 last:border-b-0'
         >
             <img
-                src={service1}
+                src={imagesMap.get(cartID)}
                 className='h-36 w-40 object-cover rounded-lg'
                 alt='Service-img'/>
             <div className='sm:ml-16 sm:w-48'>

@@ -1,5 +1,5 @@
 import service1 from '../assets/service1.jpeg'
-import {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
+import imagesMap, {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {Link, useLoaderData} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addItem} from "../features/cart/cartSlice.js";
@@ -52,7 +52,7 @@ const SingleService = () => {
             </div>
             <div className='mt-6 grid lg:grid-cols-2 gap-y-8 lg:gap-x-16'>
                 <img
-                    src={service1}
+                    src={imagesMap.get(_id)}
                     alt='Serice image'
                     className= 'w-96 h-96 object-cover rounded-lg lg:w-full'/>
                 <div className=''>
