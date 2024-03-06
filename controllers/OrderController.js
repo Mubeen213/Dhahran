@@ -50,3 +50,11 @@ export const createOrder = async (req, res) => {
             msg: 'Order placed successfully'
         })
 }
+
+export const currentUserOrder = async (req, res) => {
+
+    const userId = req.userId
+
+
+
+}
