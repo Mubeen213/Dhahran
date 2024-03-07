@@ -1,11 +1,52 @@
+import {toast} from "react-toastify";
+import {redirect, useLoaderData} from "react-router-dom";
+import {customFetch} from "../utils/index.jsx";
+import SectionTitle from "../components/SectionTitle.jsx";
+import {OrderList} from "../components/OrderList.jsx";
 
+export const orderLoader = async ({request}) => {
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!user) {
+        toast.warn('Please login to view orders')
+        return redirect('/login')
+    }
+
+    try {
+        const {data} = await customFetch.get('/api/v1/orders/userOrders')
+        const {orders} = data
+        return {orders};
+    } catch (error) {
+        console.log(error)
+        console.log(error?.response?.status)
+        const errorMessage =
+            error?.response?.data?.error?.message ||
+            'There was an error accessing your orders';
+        toast.error(errorMessage);
+        if (error?.response?.status === 401 || 403) return redirect('/login');
+        return null;
+    }
+}
 
 const Orders = () => {
+    const {orders} = useLoaderData();
 
-    return(
-        <h1>
-            Order page
-        </h1>
+    if (!orders || orders.length < 1) {
+        return <SectionTitle text='Empty! Please continue shopping'/>
+    }
+
+    return (
+        <>
+            <SectionTitle text='Your orders'/>
+                <div className='mt-8'>
+                    {
+                        orders.map((order) => {
+                            return <OrderList key={order._id} order={order}/>
+                        })
+                    }
+                </div>
+        </>
     )
 }
 

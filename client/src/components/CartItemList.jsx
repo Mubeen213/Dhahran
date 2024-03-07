@@ -2,8 +2,7 @@ import {useSelector} from "react-redux";
 import {CartItem} from "./CartItem.jsx";
 
 
-export const CartItemList = () => {
-    const cartItems = useSelector((state) => state.cartState.cartItems)
+export const CartItemList = ({cartItems}) => {
     return (
         <>
             {

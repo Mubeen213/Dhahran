@@ -32,9 +32,12 @@ export const checkoutAction = (store) => async ({request}) => {
         store.dispatch(clearCart())
         toast.success('Order placed successfully')
         return redirect('/orders')
-    } catch (err) {
-        console.log(err)
-        toast.error(err?.response?.data?.msg)
+    } catch (error) {
+        const errorMessage =
+            error?.response?.data?.error?.message ||
+            'there was an error placing your order';
+        toast.error(errorMessage);
+        if (error?.response?.status === 401 || 403) return redirect('/login');
         return null
     }
 }
