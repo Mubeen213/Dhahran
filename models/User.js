@@ -23,6 +23,18 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: [4, 'Password should be more than 4 letter']
     },
+    phoneNumber: {
+        type: Number,
+        required: true
+    },
+    dateOfBirth: {
+        type: Date,
+        required: true
+    },
+    creditCard: {
+        type: String,
+        required: true
+    },
     location: {
         type: String,
         maxLength: [200, 'Address cannot be more than 200 words']
@@ -36,7 +48,7 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
-userSchema.methods.comparePassword = async function(password) {
+userSchema.methods.comparePassword = async function (password) {
     const isMatch = await bcrypt.compare(password, this.password)
     return isMatch;
 }
