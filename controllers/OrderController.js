@@ -8,7 +8,7 @@ import {Unauthorized} from "../errors/Unauthorized.js";
 
 export const createOrder = async (req, res) => {
 
-    const {cartItems, address, tax, shippingFee, orderTotal} = req.body
+    const {cartItems, address, tax, shippingFee, pickUpDate, deliveryDate, cardDetails } = req.body
 
     if (!cartItems || cartItems.length < 1) {
         throw new BadRequest('No cart items provided')
@@ -43,7 +43,10 @@ export const createOrder = async (req, res) => {
         subTotal,
         tax,
         user: req.user.userId,
-        address
+        address,
+        pickUpDate,
+        deliveryDate,
+        cardDetails,
     })
 
     res.status(StatusCodes.CREATED)
@@ -53,7 +56,7 @@ export const createOrder = async (req, res) => {
 }
 
 export const getCurrentUserOrder = async (req, res) => {
-    const orders = await Order.find({user: req.user.userId})
+    const orders = await Order.find({user: req.user.userId}).select('-cardDetails')
     return res.status(StatusCodes.OK)
         .json({
             'orders': orders

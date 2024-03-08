@@ -4,15 +4,26 @@ import imagesMap, {formatPrice} from "../utils/index.jsx";
 
 export const OrderList = ({order}) => {
 
-    const {orderItems, status, tax, subTotal, total, createdAt} = order
-    console.log(orderItems)
+    const formatDate = (date) => {
+       return  new Date(date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        });
+    }
+
+    const {orderItems, status, tax, subTotal, total, createdAt, pickUpDate, deliveryDate} = order
+    const formattedPickUpDate = formatDate(pickUpDate)
+    const formattedDeliveryDate = formatDate(deliveryDate)
+    const orderPlacedAt = formatDate(createdAt);
+
     return (
         <article className='grid gap-4
          lg:grid-cols-12 bg-base-200 rounded-lg shadow-md mb-12'>
             <div className='lg:col-span-6 mt-8 pl-4'>
                 {orderItems.map((item) => (
-                    <Link to={`/services/${item.service}`}>
-                        <div key={item._id}
+                    <Link to={`/services/${item.service}`} key={item._id}>
+                        <div
                              className='mb-12 flex flex-row '
                         >
                             <img
@@ -34,6 +45,13 @@ export const OrderList = ({order}) => {
                                     <span className='font-medium'>  Price: </span>
                                     {formatPrice(item.price)}
                                 </p>
+                                <p className='mb-1 text-xl'>
+                                    <span className='font-medium'>  pick up: </span>
+                                    {formattedPickUpDate}
+                                </p><p className='mb-1 text-xl'>
+                                    <span className='font-medium'>  Expected Delivery: </span>
+                                    {formattedDeliveryDate}
+                                </p>
                             </div>
                         </div>
                     </Link>
@@ -48,7 +66,7 @@ export const OrderList = ({order}) => {
                 <p className='text-xl sm:text-base'><span className='font-medium'> Total: </span> {formatPrice(total)}
                 </p>
                 <p className='text-xl sm:text-base'><span
-                    className='font-medium'> Order Date: </span> {new Date(createdAt).toLocaleString()}</p>
+                    className='font-medium'> Order Date: </span> {orderPlacedAt}</p>
             </div>
         </article>
     );

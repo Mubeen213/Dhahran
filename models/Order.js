@@ -53,6 +53,19 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    pickUpDate: {
+        type: Date,
+        required: true
+    },
+    deliveryDate: {
+        type: Date,
+        required: true
+    },
+    cardDetails: {
+        type: String,
+        required: true,
+        select: false
+    },
     clientSecret: {
         type: String,
     },

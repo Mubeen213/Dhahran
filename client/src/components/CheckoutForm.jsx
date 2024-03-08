@@ -13,7 +13,7 @@ export const checkoutAction = (store) => async ({request}) => {
     console.log("Checkout action begins")
     try {
         const formData = await request.formData();
-        const {name, address} = Object.fromEntries(formData);
+        const {name, address, pickUpDate, deliveryDate, cardDetails} = Object.fromEntries(formData);
         const user = JSON.parse(localStorage.getItem('user'))
         const {cartItems, shippingFee, tax, orderTotal} = store.getState().cartState
 
@@ -23,7 +23,10 @@ export const checkoutAction = (store) => async ({request}) => {
             orderTotal: formatPrice(orderTotal),
             cartItems,
             shippingFee,
-            tax
+            tax,
+            pickUpDate,
+            deliveryDate,
+            cardDetails
         }
 
         console.log(payload)
@@ -57,6 +60,21 @@ export const CheckoutForm = () => {
                 type='text'
                 label='address'
                 name='address'
+            />
+            <FormInput
+                type='date'
+                label='Select pick up date'
+                name='pickUpDate'
+            />
+            <FormInput
+                type='date'
+                label='select delivery date'
+                name='deliveryDate'
+            />
+            <FormInput
+                type='text'
+                label='Card details'
+                name='cardDetails'
             />
             <div className='mt-4'>
                 <SubmitBtn text='Place your order'/>
