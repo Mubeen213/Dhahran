@@ -13,7 +13,6 @@ export const Header = () => {
     const handleLogout = async () => {
         try {
             const {data} = await customFetch('/api/v1/auth/logout')
-            dispatch(clearCart())
             localStorage.removeItem('user')
             toast.success('Logged out successfully');
             navigate('/')
