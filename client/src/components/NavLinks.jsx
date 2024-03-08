@@ -23,6 +23,11 @@ const links = [
     },
     {
         id: 5,
+        url: '/wishlist',
+        text: 'wishList'
+    },
+    {
+        id: 6,
         url: '/orders',
         text: 'orders'
     },

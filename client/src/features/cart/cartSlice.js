@@ -33,7 +33,7 @@ const cartSlice = createSlice({
             state.numItemsInCart += service.amount;
             state.cartTotal += service.price * service.amount;
             cartSlice.caseReducers.calculateTotals(state)
-            toast.success('Item added to cart')
+            toast.success('Service added to cart')
         },
 
         removeItem: (state, action) => {
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
             state.numItemsInCart -= service.amount;
             state.cartTotal -= service.price * service.amount;
             cartSlice.caseReducers.calculateTotals(state)
-            toast.error('Item removed from cart')
+            toast.error('Service removed from cart')
         },
         editItem: (state, action) => {
             const { cartID, amount } = action.payload;

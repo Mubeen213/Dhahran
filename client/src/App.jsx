@@ -22,6 +22,7 @@ import {checkoutLoader} from "./pages/Checkout.jsx";
 import {checkoutAction} from "./components/CheckoutForm.jsx";
 import {store} from "./store.js";
 import {orderLoader} from "./pages/Orders.jsx";
+import {Wishes} from "./pages/Wishes.jsx";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart/>
+            },
+            {
+                path: '/wishlist',
+                element: <Wishes/>
             },
             {
                 path: '/checkout',

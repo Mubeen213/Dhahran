@@ -1,9 +1,9 @@
-import service1 from '../assets/service1.jpeg'
 import imagesMap, {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {Link, useLoaderData} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addItem} from "../features/cart/cartSlice.js";
 import {useState} from "react";
+import {addItemToWishList} from "../features/wishlist/wishListSlice.js";
 
 
 export const singleServiceLoader = async ({params}) => {
@@ -22,7 +22,6 @@ const SingleService = () => {
     };
 
     const dispatch = useDispatch();
-
     const cartService = {
         cartID: _id,
         name,
@@ -30,8 +29,18 @@ const SingleService = () => {
         amount
     }
 
+    const wishLIstService = {
+        wishListID: _id,
+        name,
+        price
+    }
+
     const addToCart = () => {
         dispatch(addItem({service: cartService}))
+    }
+
+    const addToWishList = () => {
+        dispatch(addItemToWishList({service: wishLIstService}))
     }
 
     return (
@@ -58,7 +67,7 @@ const SingleService = () => {
                 <div className=''>
                     <h1 className='text-3xl md:text-4xl lg:text-5xl tracking-tight font-medium'>{name}</h1>
                     <p className='mt-6 text-xl'>{description}</p>
-                    <p className= 'mt-3 text-xl'>
+                    <p className='mt-3 text-xl'>
                         {formatPrice(price)}</p>
                     <div className='form-control w-full max-w-xs'>
                         <label className='label' htmlFor='amount'>
@@ -75,10 +84,14 @@ const SingleService = () => {
                             {generateAmountOptions(20)}
                         </select>
                     </div>
-                    <div className= 'mt-5'>
-                        <button  onClick={addToCart}
-                            className= 'btn btn-secondary btn-md'>
+                    <div className='mt-5 flex flex-wrap gap-x-4'>
+                        <button onClick={addToCart}
+                                className='btn btn-secondary btn-md'>
                             Add to cart
+                        </button>
+                        <button onClick={addToWishList}
+                                className='btn btn-secondary btn-md'>
+                            Add to wishlist
                         </button>
                     </div>
                 </div>
