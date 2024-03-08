@@ -31,8 +31,11 @@ const wishListSlice = createSlice({
         },
         removeItemFromWishList: (state, action) => {
             const {wishListID} = action.payload
-            state.wishListItems.filter((item) => item.wishListID !== wishListID)
+            console.log("Removing from wishlist " + wishListID)
+            state.wishListItems = state.wishListItems.filter((item) => item.wishListID !== wishListID)
             state.numItemsInWishList = state.wishListItems.length
+            localStorage.setItem('wishlist',JSON.stringify(state))
+            toast.success('Service removed from wishlist')
         }
     }
 })
