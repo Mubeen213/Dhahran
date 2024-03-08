@@ -12,6 +12,7 @@ export const FormInput = ({label, name, type, defaultValue, size}) => {
             type={type}
             name={name}
             className= {`input input-bordered ${size}`}
+            required
             />
         </div>
     )

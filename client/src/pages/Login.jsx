@@ -25,7 +25,7 @@ export const loginAction = async ({request}) => {
 const Login = () => {
 
     return (
-        <section className='grid h-screen place-items-center'>
+        <section className='grid h-screen place-items-center bg-secondary'>
             <Form
                 method='POST'
                 className='card w-96 shadow p-8 bg-base-100'>

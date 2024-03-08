@@ -8,7 +8,7 @@ export const registerAction = async ({request}) => {
     try {
         const formData = await request.formData();
         const inputs = Object.fromEntries(formData);
-        const {data: {user} } = await customFetch.post('/api/v1/auth/register', inputs)
+        const {data: {user}} = await customFetch.post('/api/v1/auth/register', inputs)
         localStorage.setItem('user', JSON.stringify(user));
         toast.success('Account created')
         return redirect('/')
@@ -21,37 +21,55 @@ export const registerAction = async ({request}) => {
 
 const Register = () => {
     return (
-        <section className='h-screen grid place-items-center'>
+        <section className='grid h-full sm:h-screen place-items-center py-10 bg-secondary'>
             <Form method='POST'
-                  className='card bg-base-100  w-96 p-8 shadow'>
-                <h1 className='text-center text-3xl font-bold'>Register</h1>
-                <FormInput
-                    type='text'
-                    label='name'
-                    name='name'
-                />
-                <FormInput
-                    type='email'
-                    label='email'
-                    name='email'
-                />
-                <FormInput
-                    type='password'
-                    label='password'
-                    name='password'
-                />
-                <div className='mt-8'>
-                    <SubmitBtn text='Register'/>
+                  className='card p-8 shadow bg-base-200 w-96 sm:w-2/4'>
+                <h1 className='text-center block text-3xl font-bold'>Register</h1>
+                <div className='mt-6 grid sm:grid-cols-1 md:grid-cols-2
+                    gap-4'>
+                    <FormInput
+                        type='text'
+                        label='name'
+                        name='name'
+                    />
+                    <FormInput
+                        type='email'
+                        label='email'
+                        name='email'
+                    />
+                    <FormInput
+                        type='password'
+                        label='password'
+                        name='password'
+                    />
+                    <FormInput
+                        type='tel'
+                        label='Phone number'
+                        name='password'
+                    />
+                    <FormInput
+                        type='date'
+                        label='Date of birth'
+                        name='password'
+                    />
+                    <FormInput
+                        type='text'
+                        label='Credit card'
+                        name='password'
+                    />
                 </div>
-                <p className='text-center mt-4'>
-                    Already a member?
-                    <Link
-                        to='/login'
-                        className='ml-2 link link-hover link-primary capitalize'
-                    >
-                        login
-                    </Link>
-                </p>
+                <div className='mt-8 flex flex-col items-center justify-center'>
+                    <SubmitBtn text='Register'/>
+                    <p className='text-center mt-4'>
+                        Already a member?
+                        <Link
+                            to='/login'
+                            className='ml-2 link link-hover link-primary capitalize'
+                        >
+                            login
+                        </Link>
+                    </p>
+                </div>
             </Form>
         </section>
     )
