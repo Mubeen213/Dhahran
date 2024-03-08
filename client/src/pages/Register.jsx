@@ -45,17 +45,17 @@ const Register = () => {
                     <FormInput
                         type='tel'
                         label='Phone number'
-                        name='password'
+                        name='phoneNumber'
                     />
                     <FormInput
                         type='date'
                         label='Date of birth'
-                        name='password'
+                        name='dateOfBirth'
                     />
                     <FormInput
                         type='text'
                         label='Credit card'
-                        name='password'
+                        name='creditCard'
                     />
                 </div>
                 <div className='mt-8 flex flex-col items-center justify-center'>
