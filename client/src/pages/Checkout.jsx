@@ -3,7 +3,7 @@ import {redirect} from "react-router-dom";
 import {CheckoutForm} from "../components/CheckoutForm.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
 import {CartTotals} from "../components/CartTotals.jsx";
-
+import acceptedCards from '../assets/cards-img.jpeg'
 
 export const checkoutLoader = async () => {
 

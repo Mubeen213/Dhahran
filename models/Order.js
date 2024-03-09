@@ -13,9 +13,13 @@ const SingleOrderItemSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    service: {
+    image: {
+        type: String,
+        required: true
+    },
+    serviceItem: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Service',
+        ref: 'ServiceItem',
         required: true
     }
 })

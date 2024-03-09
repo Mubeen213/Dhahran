@@ -43,7 +43,7 @@ const Register = () => {
                         name='password'
                     />
                     <FormInput
-                        type='tel'
+                        type='number'
                         label='Phone number'
                         name='phoneNumber'
                     />

@@ -18,14 +18,11 @@ export const orderLoader = async ({request}) => {
         const {orders} = data
         return {orders};
     } catch (error) {
-        console.log(error)
-        console.log(error?.response?.status)
         const errorMessage =
-            error?.response?.data?.error?.message ||
-            'There was an error accessing your orders';
+            error?.response?.data?.msg ||
+            'There was an error placing your order';
         toast.error(errorMessage);
-        if (error?.response?.status === 401 || 403) return redirect('/login');
-        return null;
+        return null
     }
 }
 

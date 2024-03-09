@@ -1,5 +1,4 @@
-import {Link} from "react-router-dom";
-import imagesMap, {formatPrice, generateAmountOptions} from "../utils/index.jsx";
+import {formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addItem} from "../features/cart/cartSlice.js";
@@ -69,7 +68,7 @@ export const SingleServiceItem = ({serviceItem}) => {
                     </button>
                     <button onClick={addToWishList}
                             className='btn btn-secondary w-28'>
-                         wishlist
+                         Wishlist
                     </button>
                 </div>
             </div>

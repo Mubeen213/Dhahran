@@ -1,4 +1,4 @@
-import imagesMap, {formatPrice, generateAmountOptions} from "../utils/index.jsx";
+import {formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {useDispatch} from "react-redux";
 import {editItem, removeItem} from "../features/cart/cartSlice.js";
 import {toast} from "react-toastify";

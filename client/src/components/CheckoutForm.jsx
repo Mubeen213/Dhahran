@@ -2,21 +2,19 @@ import {Form, redirect} from "react-router-dom";
 import {FormInput} from "./FormInput.jsx";
 import {SubmitBtn} from "./SubmitBtn.jsx";
 import {toast} from "react-toastify";
-import {store} from "../store.js";
 import {customFetch, formatPrice} from "../utils/index.jsx";
-import {useDispatch, useSelector} from "react-redux";
 import {clearCart} from "../features/cart/cartSlice.js";
-
+import acceptedCards from "../assets/cards-img.jpeg";
 
 export const checkoutAction = (store) => async ({request}) => {
 
     console.log("Checkout action begins")
     try {
         const formData = await request.formData();
-        const {name, address, pickUpDate, deliveryDate, cardDetails} = Object.fromEntries(formData);
+        const {name, address, pickUpDate, deliveryDate, cardDetails, cvv, expiry} = Object.fromEntries(formData);
         const user = JSON.parse(localStorage.getItem('user'))
         const {cartItems, shippingFee, tax, orderTotal} = store.getState().cartState
-
+        console.log("cart items " + cartItems)
         const payload = {
             name,
             address,
@@ -26,10 +24,10 @@ export const checkoutAction = (store) => async ({request}) => {
             tax,
             pickUpDate,
             deliveryDate,
-            cardDetails
+            cardDetails,
+            cvv,
+            expiry,
         }
-
-        console.log(payload)
         const {data} = await customFetch.post('/api/v1/orders/createOrder',
             payload)
         store.dispatch(clearCart())
@@ -37,10 +35,9 @@ export const checkoutAction = (store) => async ({request}) => {
         return redirect('/orders')
     } catch (error) {
         const errorMessage =
-            error?.response?.data?.error?.message ||
-            'there was an error placing your order';
+            error?.response?.data?.msg ||
+            'There was an error placing your order';
         toast.error(errorMessage);
-        if (error?.response?.status === 401 || 403) return redirect('/login');
         return null
     }
 }
@@ -71,11 +68,49 @@ export const CheckoutForm = () => {
                 label='select delivery date'
                 name='deliveryDate'
             />
-            <FormInput
-                type='text'
-                label='Card details'
-                name='cardDetails'
-            />
+            <div className= 'form-control'>
+                <label className= 'label'>
+                <span className= 'label-text capitalize'>
+                   Card details
+                </span>
+                    <img
+                        src={acceptedCards}
+                        className='w-2/4 m-0 bg-base-200 p-0 gap-0'
+                        alt='mada-card'/>
+                </label>
+                <input
+                    type='text'
+                    name='cardDetails'
+                    className= {`input input-bordered`}
+                    required
+                />
+            </div>
+            <div className='form-control'>
+                <label className='label'>
+                <span className='label-text capitalize'>
+                    CVV
+                </span>
+                </label>
+                <input
+                    type='tel'
+                    name='cvv'
+                    maxLength="3"
+                    className={`input input-bordered sm:input-sm`}
+                    required
+                />
+            </div>
+            <div className='form-control'>
+                <label className='label'>
+                <span className='label-text capitalize'>
+                    Expiry
+                </span>
+                </label>
+                <input
+                    type="text" id="expiry" name="expiry" pattern="\d\d/\d\d" maxLength="5" placeholder="MM/YY"
+                    className={`input input-bordered sm:input-sm`}
+                    required
+                />
+            </div>
             <div className='mt-4'>
                 <SubmitBtn text='Place your order'/>
             </div>

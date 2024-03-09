@@ -40,9 +40,7 @@ export const register = async (req, res) => {
         throw new BadRequest('Email already exists')
     }
 
-    console.log("Credit card lenght " + creditCard.length)
-
-    if (creditCard.length <= 4) {
+    if (creditCard.length !== 16) {
         throw new BadRequest('Please provide correct credit card details')
     }
 

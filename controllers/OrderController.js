@@ -4,31 +4,46 @@ import {NotFound} from "../errors/NotFound.js";
 import {Order} from "../models/Order.js";
 import {StatusCodes} from "http-status-codes";
 import {Unauthorized} from "../errors/Unauthorized.js";
+import ServiceItem from "../models/ServiceItem.js";
 
 
 export const createOrder = async (req, res) => {
 
-    const {cartItems, address, tax, shippingFee, pickUpDate, deliveryDate, cardDetails } = req.body
-
+    const {
+        cartItems, address, tax, shippingFee,
+        pickUpDate, deliveryDate, cardDetails, cvv, expiry
+    } = req.body
     if (!cartItems || cartItems.length < 1) {
         throw new BadRequest('No cart items provided')
     }
     if (!tax || !shippingFee) {
         throw new BadRequest('No tax or Shipping fee was provided')
     }
+    if (!cardDetails || cardDetails.length !== 4) {
+        throw new BadRequest('Please provide correct card details')
+    }
+    if (!cvv || cvv.length !== 3) {
+        throw new BadRequest('Please provide correct CVV number')
+    }
+
+    if (!expiry) {
+        throw new BadRequest('Please provide correct expiry date for card')
+    }
+
     let orderItems = [];
     let subTotal = 0;
     for (const item of cartItems) {
-        const dbService = await Service.findOne({_id: item.cartID})
+        const dbService = await ServiceItem.findOne({_id: item.cartID})
         if (!dbService) {
             throw new NotFound(`Service with id: ${item.cartID} does not exist`)
         }
-        const {name, price, _id} = dbService;
+        const {name, price, _id, image} = dbService;
         const singleOrderItem = {
             amount: item.amount,
             name,
             price,
-            service: _id
+            serviceItem: _id,
+            image
         }
         orderItems = [...orderItems, singleOrderItem]
         subTotal += item.amount * price

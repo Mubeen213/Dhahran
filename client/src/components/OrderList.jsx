@@ -1,5 +1,5 @@
-import {Link, useLoaderData} from "react-router-dom";
-import imagesMap, {formatPrice} from "../utils/index.jsx";
+import {Link} from "react-router-dom";
+import {formatPrice} from "../utils/index.jsx";
 
 
 export const OrderList = ({order}) => {
@@ -16,18 +16,17 @@ export const OrderList = ({order}) => {
     const formattedPickUpDate = formatDate(pickUpDate)
     const formattedDeliveryDate = formatDate(deliveryDate)
     const orderPlacedAt = formatDate(createdAt);
-
+    console.log(orderItems)
     return (
         <article className='grid gap-4
          lg:grid-cols-12 bg-base-200 rounded-lg shadow-md mb-12'>
             <div className='lg:col-span-6 mt-8 pl-4'>
                 {orderItems.map((item) => (
-                    <Link to={`/services/${item.service}`} key={item._id}>
                         <div
                              className='mb-12 flex flex-row '
                         >
                             <img
-                                src={imagesMap.get(item.service)}
+                                src={`http://localhost:5001${item.image}`}
                                 alt='service-img'
                                 className='h-32 w-32 rounded-lg sm:h-40 sm:w-40 object-cover
                             mr-8'
@@ -54,7 +53,6 @@ export const OrderList = ({order}) => {
                                 </p>
                             </div>
                         </div>
-                    </Link>
                 ))}
             </div>
             <div className='lg:col-span-6 mt-8 p-4'>

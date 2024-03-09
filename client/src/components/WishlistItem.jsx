@@ -1,4 +1,4 @@
-import imagesMap, {formatPrice} from "../utils/index.jsx";
+import {formatPrice} from "../utils/index.jsx";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addItem} from "../features/cart/cartSlice.js";

@@ -22,6 +22,30 @@ corporateServiceItems = [
         "price": 4000,
         "image": "/uploads/icon.svg",
         "serviceName": "Corporate Laundry Solutions"
+    },
+    {
+        "name": "Polo Shirt",
+        "price": 3000,
+        "image": "/uploads/icon.svg",
+        "serviceName": "Corporate Laundry Solutions"
+    },
+    {
+        "name": "Pencil Skirt or Dress Pants",
+        "price": 5500,
+        "image": "/uploads/icon.svg",
+        "serviceName": "Corporate Laundry Solutions"
+    },
+    {
+        "name": "Cardigan or Sweater",
+        "price": 3500,
+        "image": "/uploads/icon.svg",
+        "serviceName": "Corporate Laundry Solutions"
+    },
+    {
+        "name": "Leather Belt",
+        "price": 1000,
+        "image": "/uploads/icon.svg",
+        "serviceName": "Corporate Laundry Solutions"
     }
 ]
 
