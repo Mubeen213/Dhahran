@@ -1,4 +1,4 @@
-import imagesMap, {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
+import {customFetch, formatPrice, generateAmountOptions} from "../utils/index.jsx";
 import {Link, useLoaderData} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addItem} from "../features/cart/cartSlice.js";
@@ -7,8 +7,12 @@ import {addItemToWishList} from "../features/wishlist/wishListSlice.js";
 
 
 export const singleServiceLoader = async ({params}) => {
-    const {data} = await customFetch(`/api/v1/services/${params.id}`)
-    return {service: data.service}
+    const serviceResponse = await customFetch(`/api/v1/services/${params.id}`)
+    const service = serviceResponse.data.service
+
+    const serviceItemsResponse = await customFetch(`/api/v1/serviceItems/${params.id}`)
+    const serviceItems = serviceItemsResponse.data.service
+    return {service, serviceItems}
 }
 
 const SingleService = () => {
@@ -68,33 +72,33 @@ const SingleService = () => {
                 <div className=''>
                     <h1 className='text-3xl md:text-4xl lg:text-5xl tracking-tight font-medium'>{name}</h1>
                     <p className='mt-6 text-xl'>{description}</p>
-                    <p className='mt-3 text-xl'>
-                        {formatPrice(price)}</p>
-                    <div className='form-control w-full max-w-xs'>
-                        <label className='label' htmlFor='amount'>
-                            <h4 className='text-md font-medium -tracking-wider capitalize'>
-                                amount
-                            </h4>
-                        </label>
-                        <select
-                            className='select select-secondary select-bordered select-md'
-                            id='amount'
-                            value={amount}
-                            onChange={handleAmount}
-                        >
-                            {generateAmountOptions(20)}
-                        </select>
-                    </div>
-                    <div className='mt-5 flex flex-wrap gap-x-4'>
-                        <button onClick={addToCart}
-                                className='btn btn-secondary btn-md'>
-                            Add to cart
-                        </button>
-                        <button onClick={addToWishList}
-                                className='btn btn-secondary btn-md'>
-                            Add to wishlist
-                        </button>
-                    </div>
+                    {/*<p className='mt-3 text-xl'>*/}
+                    {/*    {formatPrice(price)}</p>*/}
+                    {/*<div className='form-control w-full max-w-xs'>*/}
+                    {/*    <label className='label' htmlFor='amount'>*/}
+                    {/*        <h4 className='text-md font-medium -tracking-wider capitalize'>*/}
+                    {/*            amount*/}
+                    {/*        </h4>*/}
+                    {/*    </label>*/}
+                    {/*    <select*/}
+                    {/*        className='select select-secondary select-bordered select-md'*/}
+                    {/*        id='amount'*/}
+                    {/*        value={amount}*/}
+                    {/*        onChange={handleAmount}*/}
+                    {/*    >*/}
+                    {/*        {generateAmountOptions(20)}*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
+                    {/*<div className='mt-5 flex flex-wrap gap-x-4'>*/}
+                    {/*    <button onClick={addToCart}*/}
+                    {/*            className='btn btn-secondary btn-md'>*/}
+                    {/*        Add to cart*/}
+                    {/*    </button>*/}
+                    {/*    <button onClick={addToWishList}*/}
+                    {/*            className='btn btn-secondary btn-md'>*/}
+                    {/*        Add to wishlist*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </section>

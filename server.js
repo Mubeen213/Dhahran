@@ -12,6 +12,7 @@ import serviceRouter from "./routes/ServiceRoutes.js";
 import authRoutes from "./routes/AuthRoutes.js";
 import userRouter from './routes/UserRoutes.js'
 import orderRoutes from "./routes/OrderRoutes.js";
+import serviceItemRouter from "./routes/ServiceItemRoutes.js";
 
 dotenv.config()
 
@@ -21,9 +22,11 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(cookieParser(process.env.JWT_SECRET))
 
-app.use('/api/v1/services', serviceRouter)
+
 app.use('/api/v1/auth', authRoutes)
-app.use('/api/v1/users',userRouter)
+app.use('/api/v1/users', userRouter)
+app.use('/api/v1/services', serviceRouter)
+app.use('/api/v1/serviceItems', serviceItemRouter)
 app.use('/api/v1/orders', orderRoutes)
 
 app.get('/api/v1/test', (req, res) => {

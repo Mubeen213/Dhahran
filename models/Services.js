@@ -8,10 +8,6 @@ const servicesSchema = new mongoose.Schema({
         trim: true,
         required: [true, 'Please provide service name']
     },
-    price: {
-        type: Number,
-        required: [true, 'Please provide price'],
-    },
     description: {
         type: String,
         trim: true,
