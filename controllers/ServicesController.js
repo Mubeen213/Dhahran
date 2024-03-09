@@ -1,6 +1,5 @@
 import {StatusCodes} from "http-status-codes";
 import Service from "../models/Services.js";
-import {BadRequest} from "../errors/BadRequest.js";
 
 
 export const createService = async (req, res) => {
@@ -11,6 +10,16 @@ export const createService = async (req, res) => {
         .json({
             'service': service
         })
+}
+
+export const createServices = async (req, res) => {
+
+    const {services} = req.body
+    console.log(services)
+    const createdServices = await Service.insertMany(services);
+    res.status(StatusCodes.CREATED).json({
+        msg: "Created services"
+    })
 }
 
 export const getService = async (req, res) => {

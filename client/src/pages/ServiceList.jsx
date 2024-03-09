@@ -16,13 +16,12 @@ export const ServiceList = ({services}) => {
         <section className='mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {
                 services.map((service) => {
-                    const {name, description, price, featured, _id} = service
-                    const image = imagesMap.get(_id)
+                    const {name, description, price, featured, _id, image} = service
                     return (
                         <div key={_id}
                             className="flex flex-col justify-center max-w-sm bg-white border
                              border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img className="rounded-t-lg" src={image} alt="" />
+                            <img className="rounded-t-lg" src={`http://localhost:5001${image}`} alt="" />
                             <div className="p-5 flex flex-col justify-between h-full">
                                 <div>
                                     <h5 className="mb-2 mx-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -18,8 +18,6 @@ export const isTokenValid = ({token}) => {
 export const setAuthCookiesToResponse = ({res, user}) => {
 
     const token = createJwt({payload: user})
-
-    console.log("New JWT token  " + token)
     const oneDay = 1000 * 60 * 60 * 24;
     res.cookie('token', token, {
         httpOnly: true,

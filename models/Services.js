@@ -17,6 +17,10 @@ const servicesSchema = new mongoose.Schema({
         trim: true,
         maxLength: [700, 'Description cannot be more than 700 words']
     },
+    image: {
+        type: String,
+        required: true
+    },
     featured: {
         type: Boolean,
         default: false

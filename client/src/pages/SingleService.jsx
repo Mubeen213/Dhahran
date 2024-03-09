@@ -14,9 +14,10 @@ export const singleServiceLoader = async ({params}) => {
 const SingleService = () => {
 
     const {service} = useLoaderData()
-    const {name, description, price, _id} = service
+    const {name, description, price, _id, image} = service
     const [amount, setAmount] = useState(1);
 
+    console.log("Image url " + image)
     const handleAmount = (e) => {
         setAmount(parseInt(e.target.value));
     };
@@ -61,7 +62,7 @@ const SingleService = () => {
             </div>
             <div className='mt-6 grid lg:grid-cols-2 gap-y-8 lg:gap-x-16'>
                 <img
-                    src={imagesMap.get(_id)}
+                    src={`http://localhost:5001${image}`}
                     alt='Serice image'
                     className= 'w-96 h-96 object-cover rounded-lg lg:w-full'/>
                 <div className=''>
