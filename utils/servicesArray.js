@@ -21,13 +21,20 @@ services = [
     {
         "name": "Contactless Pickup and Delivery",
         "description": "Our Contactless Pickup and Delivery service provide a safe and convenient way to handle your laundry. Schedule a pickup online, and we'll deliver your clean clothes back to your doorstep, minimizing any physical contact.",
-        "featured": true,
+        "featured": false,
         "image": "/uploads/service4.jpeg"
     },
     {
         "name": "Baby Clothes and Blanket Care",
         "description": "Gentle care for your little ones! Our Baby Clothes and Blanket Care service ensures that your baby's clothes and blankets are washed with mild detergents, keeping them soft, safe, and free from irritants.",
-        "featured": true,
+        "featured": false,
         "image": "/uploads/service5.jpeg"
+    },
+    {
+        "name": "Daily Wear",
+        "description": "Experience the convenience of our E-Laundry System with our Daily Wear service. We ensure efficient and reliable laundry solutions for your everyday clothing needs. From shirts and trousers to casual wear, we've got you covered!",
+        "featured": false,
+        "image": "/uploads/service6.jpeg"
     }
+
 ]

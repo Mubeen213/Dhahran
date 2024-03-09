@@ -14,7 +14,7 @@ export const createBulkServiceItems = async (req, res) => {
         const {name, price, image, serviceName} = item;
         const dbService = await Service.findOne({name: serviceName});
         if (!dbService) {
-            throw new BadRequest(`Service with naame ${name} does not exist`);
+            throw new BadRequest(`Service with naame ${serviceName} does not exist`);
         }
         await ServiceItem.create({name, price, image, service: dbService._id});
     }

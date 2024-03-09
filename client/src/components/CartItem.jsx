@@ -8,7 +8,7 @@ export const CartItem = ({cartItem}) => {
 
     const dispatch = useDispatch();
 
-    const {cartID, name, price, amount} = cartItem
+    const {cartID, name, price, amount, image} = cartItem
 
     const handleAmount = (e, isCartEdit) => {
         e.preventDefault()
@@ -31,7 +31,7 @@ export const CartItem = ({cartItem}) => {
         >
             <Link to={`/services/${cartID}`}>
                 <img
-                    src={imagesMap.get(cartID)}
+                    src={`http://localhost:5001${image}`}
                     className='h-36 w-40 object-cover rounded-lg'
                     alt='Service-img'/>
             </Link>

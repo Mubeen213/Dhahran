@@ -4,8 +4,8 @@ import Service from "../models/Services.js";
 
 export const createService = async (req, res) => {
 
-    const {name, price, description, featured} = req.body
-    const service = await Service.create({name, price, description, featured})
+    const {name, description, featured, image} = req.body
+    const service = await Service.create({name, description, featured, image})
     return res.status(StatusCodes.CREATED)
         .json({
             'service': service
