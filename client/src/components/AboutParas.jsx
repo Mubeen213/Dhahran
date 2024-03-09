@@ -27,9 +27,7 @@ const aboutStatements = [
     {
         id: 6,
         subHeading: 'Contact Us',
-        content: 'Have a question, suggestion, or just want to say hello? We\'d love to hear from you! Reach out to our dedicated customer support team at [Contact Email or Phone Number].\n' +
-            '\n' +
-            'Thank you for choosing Dhahran E-Landry – where convenience, quality, and care come together for a laundry experience like no other.'
+        content: 'Have a question, suggestion, or just want to say hello? We\'d love to hear from you! Reach out to our dedicated customer support team at ehtesham@gmail.com Thank you for choosing Dhahran E-Landry – where convenience, quality, and care come together for a laundry experience like no other.'
     },
 ]
 
