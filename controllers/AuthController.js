@@ -40,10 +40,17 @@ export const register = async (req, res) => {
         throw new BadRequest('Email already exists')
     }
 
+    console.log("Credit card lenght " + creditCard.length)
+
+    if (creditCard.length <= 4) {
+        throw new BadRequest('Please provide correct credit card details')
+    }
+
     const isFirstAccount = await User.countDocuments(({})) === 0;
     const role = isFirstAccount ? 'admin' : 'user';
 
     const hashedPassword = await hashPassword(password)
+    const hashedCreditCard = await hashPassword(creditCard);
     const user = await User.create(
         {
             name,
@@ -52,7 +59,7 @@ export const register = async (req, res) => {
             role,
             phoneNumber,
             dateOfBirth,
-            creditCard
+            creditCard: hashedCreditCard
         })
     const tokenUser = createTokenUser(user)
     setAuthCookiesToResponse({res, user: tokenUser})
