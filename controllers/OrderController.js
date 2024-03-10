@@ -19,7 +19,7 @@ export const createOrder = async (req, res) => {
     if (!tax || !shippingFee) {
         throw new BadRequest('No tax or Shipping fee was provided')
     }
-    if (!cardDetails || cardDetails.length !== 4) {
+    if (!cardDetails || cardDetails.length !== 16) {
         throw new BadRequest('Please provide correct card details')
     }
     if (!cvv || cvv.length !== 3) {
