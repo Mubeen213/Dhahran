@@ -30,7 +30,7 @@ export const WishlistItem = ({wishlistItem}) => {
         <article className='flex flex-col md:flex-row
               bg-white shadow-md rounded-box p-4 mt-6 gap-x-4'>
             <Link to={`/services/${wishListID}`}>
-                <img src={`http://localhost:5001${image}`}
+                <img src={image}
                      alt='service-img'
                      className='w-38 h-40 bg-base-200 rounded-box object-cover '/>
             </Link>
