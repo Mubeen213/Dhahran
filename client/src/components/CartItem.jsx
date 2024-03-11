@@ -31,7 +31,7 @@ export const CartItem = ({cartItem}) => {
         >
             <Link to={`/services/${cartID}`}>
                 <img
-                    src={`http://localhost:5001${image}`}
+                    src={image}
                     className='h-36 w-40 object-cover rounded-lg'
                     alt='Service-img'/>
             </Link>
