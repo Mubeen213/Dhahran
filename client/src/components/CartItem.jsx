@@ -29,12 +29,10 @@ export const CartItem = ({cartItem}) => {
                    sm:flex-row flex-wrap
                    border-b border-base-300 pb-6 last:border-b-0'
         >
-            <Link to={`/services/${cartID}`}>
                 <img
                     src={image}
                     className='h-36 w-40 object-cover rounded-lg'
                     alt='Service-img'/>
-            </Link>
             <div className='sm:ml-16 sm:w-48'>
                 <h4 className='text-2xl mt-2
              font-medium tracking-tight'>{name}</h4>

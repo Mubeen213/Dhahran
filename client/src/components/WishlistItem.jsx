@@ -29,11 +29,9 @@ export const WishlistItem = ({wishlistItem}) => {
     return (
         <article className='flex flex-col md:flex-row
               bg-white shadow-md rounded-box p-4 mt-6 gap-x-4'>
-            <Link to={`/services/${wishListID}`}>
                 <img src={image}
                      alt='service-img'
                      className='w-38 h-40 bg-base-200 rounded-box object-cover '/>
-            </Link>
             <div className='flex flex-col gap-2 flex-wrap  leading-normal'>
                 <h3 className='mb-1 text-xl flex flex-wrap'>
                     <span className='font-medium'> Name: </span>
