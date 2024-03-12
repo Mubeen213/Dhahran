@@ -7,14 +7,11 @@ import {clearCart} from "../features/cart/cartSlice.js";
 import acceptedCards from "../assets/cards-img.jpeg";
 
 export const checkoutAction = (store) => async ({request}) => {
-
-    console.log("Checkout action begins")
     try {
         const formData = await request.formData();
         const {name, address, pickUpDate, deliveryDate, cardDetails, cvv, expiry} = Object.fromEntries(formData);
         const user = JSON.parse(localStorage.getItem('user'))
         const {cartItems, shippingFee, tax, orderTotal} = store.getState().cartState
-        console.log("cart items " + cartItems)
         const payload = {
             name,
             address,

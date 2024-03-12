@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     },
     dateOfBirth: {
         type: Date,
-        required: true
+        required: false
     },
     creditCard: {
         type: String,
@@ -43,6 +43,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['admin', 'user'],
         default: 'user'
+    },
+    verificationToken: String,
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    verifiedOn: {
+        type: Date
     }
 }, {
     timestamps: true

@@ -4,14 +4,15 @@ import {
     About,
     Cart,
     Checkout,
-    Landing,
     Error,
     HomeLayout,
+    Landing,
     Login,
     Orders,
     Register,
     Services,
-    SingleService
+    SingleService,
+    VerifyEmail
 } from './pages'
 import {loader} from "./pages/FeaturedServices.jsx";
 import {serviceLoader} from "./pages/Services.jsx";
@@ -23,6 +24,7 @@ import {checkoutAction} from "./components/CheckoutForm.jsx";
 import {store} from "./store.js";
 import {orderLoader} from "./pages/Orders.jsx";
 import {Wishes} from "./pages/Wishes.jsx";
+import {verifyEmailLoader} from "./pages/VerifyEmail.jsx";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +81,11 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register/>,
         action: registerAction
+    },
+    {
+        path: '/auth/verify-email',
+        element: <VerifyEmail/>,
+        loader: verifyEmailLoader
     }
 ])
 
