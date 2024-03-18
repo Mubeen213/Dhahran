@@ -60,6 +60,9 @@ const Register = () => {
                 </div>
                 <div className='mt-8 flex flex-col items-center justify-center'>
                     <SubmitBtn text='Register'/>
+                    <Link to='/sso' className=' text-center link link-primary link-hover mt-3'>
+                        <p>Signup another way </p>
+                    </Link>
                     <p className='text-center mt-4'>
                         Already a member?
                         <Link

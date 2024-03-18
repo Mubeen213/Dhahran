@@ -10,7 +10,7 @@ export const loginAction = async ({request}) => {
     try {
         const formData = await request.formData();
         const inputs = Object.fromEntries(formData)
-        const {data : {user}} = await customFetch.post('/api/v1/auth/login', inputs)
+        const {data: {user}} = await customFetch.post('/api/v1/auth/login', inputs)
         localStorage.setItem('user', JSON.stringify(user));
         toast.success('Logged in successfully')
         return redirect('/')
@@ -43,6 +43,9 @@ const Login = () => {
                 <div className='mt-6'>
                     <SubmitBtn text='Login'/>
                 </div>
+                <Link to='/sso' className=' text-center link link-primary link-hover mt-3'>
+                    <p>Login another way </p>
+                </Link>
                 <p className='text-center mt-4'>
                     Not a member yet?{' '}
                     <Link

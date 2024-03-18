@@ -4,9 +4,9 @@ import {
     About,
     Cart,
     Checkout,
-    Landing,
     Error,
     HomeLayout,
+    Landing,
     Login,
     Orders,
     Register,
@@ -23,6 +23,7 @@ import {checkoutAction} from "./components/CheckoutForm.jsx";
 import {store} from "./store.js";
 import {orderLoader} from "./pages/Orders.jsx";
 import {Wishes} from "./pages/Wishes.jsx";
+import {OauthButton} from "./components/OauthButton.jsx";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +80,12 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register/>,
         action: registerAction
+    },
+    {
+        path: '/sso',
+        element: <OauthButton/>,
+        // loader: oauthDetailsLoader,
+        // action: callbackAction
     }
 ])
 

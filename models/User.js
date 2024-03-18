@@ -20,20 +20,20 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
-        minLength: [4, 'Password should be more than 4 letter']
+        // required: true,
+        // minLength: [4, 'Password should be more than 4 letter']
     },
     phoneNumber: {
         type: Number,
-        required: true
+        // required: true
     },
     dateOfBirth: {
         type: Date,
-        required: true
+        // required: true
     },
     creditCard: {
         type: String,
-        required: true
+        // required: true
     },
     location: {
         type: String,
@@ -43,6 +43,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['admin', 'user'],
         default: 'user'
+    },
+    signUpMethod: {
+        type: String,
+        enum: ['basic', 'oauth'],
+        default: 'oauth'
     }
 }, {
     timestamps: true

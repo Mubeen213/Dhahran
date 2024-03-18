@@ -23,13 +23,13 @@ export const OrderList = ({order}) => {
             <div className='lg:col-span-6 mt-8 pl-4'>
                 {orderItems.map((item) => (
                         <div
-                             className='mb-12 flex flex-row '
+                             className='mb-12 flex flex-col sm:flex-row'
                         >
                             <img
-                                src={`http://localhost:5001${item.image}`}
+                                src={item.image}
                                 alt='service-img'
                                 className='h-32 w-32 rounded-lg sm:h-40 sm:w-40 object-cover
-                            mr-8'
+                            mr-8 mb-4'
                             />
                             <div className='flex flex-col '>
                                 <h3 className='mb-1 text-xl'>
